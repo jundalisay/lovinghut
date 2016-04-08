@@ -1,0 +1,19 @@
+@import "bootstrap";
+
+.jumbotron {
+  background-image: url(#);
+  height: 350px;
+  background-color: green;
+  opacity: 0.8;
+  h1 { color: white}
+  color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0 !important;
+  font-weight: bold;
+  text-align: center;
+  margin-top: -9px;
+  p { 
+  color: white;
+  }
+}

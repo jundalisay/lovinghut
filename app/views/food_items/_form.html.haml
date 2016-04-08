@@ -1,0 +1,32 @@
+= form_for @food_item do |f|
+  - if @food_item.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@food_item.errors.count, "error")} prohibited this food_item from being saved:"
+      %ul
+        - @food_item.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :price
+    = f.text_field :price
+  .field
+    = f.label :section
+    = f.select :section, [ 'Breakfast','Lunch','Dinner', 'Drinks' ], :prompt => 'Section'
+  .field
+    = f.label :cuisine
+    = f.text_field :cuisine
+  .field
+    = f.label :image_url
+    = f.text_field :image_url
+  .field
+    = f.label :Coupon
+    = f.text_field :coupon
+
+  .actions
+    = f.submit 'Save'

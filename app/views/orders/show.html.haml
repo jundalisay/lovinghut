@@ -1,0 +1,24 @@
+.row
+	%h1 
+		Order
+/ #{@order.id}
+
+%table.table.table-striped.table-condensed
+	%tbody
+		%tr
+			%td Customer's Name
+			%td= @order.name
+		%tr 
+			%td Customer's Address
+			%td= @order.address
+		%tr
+			%td Total Cost (added 20k VND for delivery)
+			%td= @cost.round
+		%tr 
+			%td Date of Order
+			%td= @order.created_at.strftime("%B %d, %Y, %A")
+		%td= link_to 'Back to Menu', menu_index_path
+
+/		%td= link_to 'Cancel Order', orders_path, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+/ lists the name of item, the total cost (delivery should cost 20,000 VND), the user’s name, the user’s address, and the time the order was created in human-readable format (for example, Tuesday, December 1, 15:25).

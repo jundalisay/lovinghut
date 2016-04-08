@@ -1,0 +1,31 @@
+%h1
+	Order for 
+	= @food_item.name
+
+- flash.each do |name, message|
+	= content_tag :div do
+		%a{class: "close", data: {dismiss: "alert"}, href: "#", aria: {hidden: "true"}} &times;
+		= simple_format message
+
+.col-xs-12
+	= form_for [@food_item, Order.new] do |f| #food_item/x/Order/new
+		.form-group.row
+			= f.label :name
+			= f.text_field :name, class: 'form-control'
+		.form-group.row
+			= f.label :phone
+			= f.text_field :phone, class: 'form-control'
+		.form-group.row
+			= f.label :address
+			= f.text_field :address, class: 'form-control'
+
+		= f.submit 'Place Order', class: 'btn btn-success'
+
+/ - if flash[:error]
+/ 	.alert.alert-danger
+/ 		= flash[:error]
+/ - if flash[:success]
+/ 	.alert.alert-success
+/ 		= flash[:sucess]
+/ - flash[:error]
+/ 	- flash[:successess]

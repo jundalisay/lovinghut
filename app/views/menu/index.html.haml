@@ -1,0 +1,50 @@
+%h1 Menu
+
+.container
+	.row
+		%ul.nav.nav-pills
+			= @sections.each do |section|
+				%li.nav-item
+					= link_to section, menu_index_path(section: section), class: "nav-link #{params[:section] == section && 'active'}"
+			%li.nav-item
+				Sort by:
+			%li.nav-item
+				= link_to "High To Low Price", highlowprice_menu_index_path, class: 'btn btn-secondary'
+			%li.nav-item
+				= link_to "Low To High Price", lowhighprice_menu_index_path, class: 'btn btn-secondary'
+			%li.nav-item
+				= link_to "Alphabetical", abc_menu_index_path, class: 'btn btn-secondary'	
+	%br
+	%br
+		- if (@food_items.empty?)
+			%h2 Sorry, no food found :(
+		- else  
+	/ = paginate @food_items
+
+.container
+	.col-xs-12
+		.row
+			- @food_items.each do |food_item|
+				.col-xs-6
+					.card.card-inverse
+						%img.card-img{:alt => "Food Image", "src" => "#{food_item.image_url}", :width => "100%"}
+						.card-img-overlay
+							%h4.card-title 
+								= link_to food_item.name, food_item
+							%p.card-text #{food_item.description}
+							%p.card-text VND #{food_item.price}
+							= link_to "Order", new_food_item_order_path(food_item), class: 'btn btn-success'
+
+/ = @food_items.in_groups_of(3) do |group|
+/ .row
+/ = group.compact.each do |food_item|
+/ - @food_items.each do |food_item|
+/ .col-xs-6
+/ .card.card-inverse
+/ %img.card-img{:alt => "Food Image", "src" => "#{food_item.image_url}", :width => "100%"}
+/ .card-img-overlay
+/ %h4.card-title 
+/ = link_to food_item.name, food_item
+/ %p.card-text #{food_item.description}
+/ %p.card-text VND #{food_item.price}
+/ = link_to "Order", menu_index_path, class: 'btn btn-success'

@@ -1,0 +1,14 @@
+= simple_form_for([@food_item, @food_item.reviews.build]) do |f|
+	#rating-form
+		= f.input :rating
+	%br
+	= f.input :rev, :label => "Review"	
+	= f.submit "Submit Review", class: "btn btn-default"
+
+/ = f.hidden_field :food_item_id, value: @food_item.id
+
+:javascript
+	$('#rating-form').raty({
+	path: '/assets/',
+	scoreName: 'review[rating]'
+	});

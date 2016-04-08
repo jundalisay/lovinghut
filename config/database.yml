@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  database: coder_restaurant
+  pool: 5
+
+development:
+  <<: *default
+  database: coder_restaurant_development
+
+test:
+  <<: *default
+  database: coder_restaurant_test
+
+production:
+  <<: *default
+  database: coder_restaurant_production
+  username: coder_restaurant
+  password: <%= ENV['CODER_RESTAURANT_PASSWORD'] %>

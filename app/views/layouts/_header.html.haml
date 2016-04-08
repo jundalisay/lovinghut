@@ -1,0 +1,21 @@
+%nav.navbar.navbar-light.bg-faded
+  %button.navbar-toggler.hidden-sm-up{"data-target" => "#exCollapsingNavbar2", "data-toggle" => "collapse", :type => "button"}
+    ☰
+  #exCollapsingNavbar2.collapse.navbar-toggleable-xs
+    %ul.nav.navbar-nav
+      %li.nav-item.active
+        %a.nav-link{:href => "/"} Home
+      %li.nav-item
+        %a.nav-link{:href => "/menu"} Menu
+      %li.nav-item
+        %a.nav-link{:href => "/react"} React Input
+      %li.nav-item
+        %a.nav-link{:href => "/contact_us"} Contact Us
+      %li.nav-item
+        %a.nav-link{:href => "http://learning.coderschool.vn/"} About
+      %form.form-inline.pull-xs-right
+        = form_tag :controller => 'menu', :action => 'index', :method => 'get' do #food_items_path
+          %p
+          / %input.form-control{:placeholder => "Search", :type => "text"}
+          = text_field_tag :search, params[:search]
+          %button.btn.btn-success-outline{:type => "submit"} Search

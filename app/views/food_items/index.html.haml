@@ -1,0 +1,29 @@
+%br
+%h1 Listing Food Items
+
+%table.table.table-striped.table-condensed
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Price
+      %th Section
+      %th Image url
+      %th Views
+
+  %tbody
+    - @food_items.each do |food_item|
+      %tr
+        %td= food_item.name
+        %td= food_item.description
+        %td= food_item.price
+        %td= food_item.section
+        %td= food_item.image_url
+        %td= food_item.impressionist_count
+        %td= link_to 'Show', food_item
+        %td= link_to 'Edit', edit_food_item_path(food_item)
+        %td= link_to 'Destroy', food_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Food item', new_food_item_path, class: "btn btn-secondary"

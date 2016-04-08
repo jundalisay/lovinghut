@@ -1,0 +1,91 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  database: coder_restaurant
+  pool: 5
+
+development:
+  <<: *default
+  database: coder_restaurant_development
+
+test:
+  <<: *default
+  database: coder_restaurant_test
+
+production:
+  <<: *default
+  database: coder_restaurant_production
+  username: coder_restaurant
+  password: <%= ENV['CODER_RESTAURANT_PASSWORD'] %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: coder_restaurant_development
+  username: jun
+  password: rhenee
+  host: localhost
+  port: 5432
+  schema_search_path: myapp,sharedapp,public
+  min_messages: notice
+
+test:
+  <<: *default
+  database: coder_restaurant_test
+
+#  DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
+
+You can use this database configuration with:
+
+  production:
+    url: <%= ENV['DATABASE_URL'] %>
+
+production:
+  <<: *default
+  database: coder_restaurant_production
+  username: coder_restaurant
+  password: <%= ENV['CODER_RESTAURANT_DATABASE_PASSWORD'] %>
+
+# default: &default
+#   adapter: sqlite3
+#   pool: 5
+#   timeout: 5000
+
+# development:
+#   <<: *default
+#   database: db/development.sqlite3
+
+# test: &test
+#   <<: *default
+#   database: db/test.sqlite3
+
+# production:
+#   <<: *default
+#   database: db/production.sqlite3
+
+# # production:
+# #   adapter: postgresql
+# #   database: SocialNetworkProductionDB
+# #   pool: 5
+# #   timeout: 5000
+
+# cucumber:
+#   <<: *test

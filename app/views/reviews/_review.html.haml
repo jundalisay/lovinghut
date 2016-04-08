@@ -1,0 +1,23 @@
+.card
+  .card-title
+    .col-xs-6
+      %b Stars:
+      = review.rating
+      .review-rating{"data-score" => review.rating}
+    .col-xs-6.col-right
+      = link_to 'Edit', edit_food_item_review_path(review.food_item, review), class: 'btn btn-secondary'
+      = link_to 'Delete', food_item_review_path(review.food_item, review), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-secondary'
+  .card-block
+    %p.card-text
+      = review.rev
+      %br
+
+
+:javascript
+  $('.review-rating').raty({
+  readOnly: true,
+  score: function() {
+  return $(this).attr('data-score');
+  },
+  path: '/assets/'
+  });  

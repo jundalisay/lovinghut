@@ -1,0 +1,17 @@
+%h2 Edit Review
+= simple_form_for([@food_item, @review]) do |f|
+	.col-md-6
+		%b Rating
+		#rating-form
+		%br
+		= f.input :rating
+		= f.input :rev, :label => "Review"
+		= f.button :submit
+	.col-md-6
+		= image_tag(@food_item.image_url)
+
+:javascript
+	$('#rating-form').raty({
+	// path: '/assets/',
+	scoreName: 'review[rating]'
+	});

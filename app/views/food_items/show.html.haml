@@ -1,0 +1,69 @@
+%p#notice= notice
+
+.col-xs-12
+  .col-xs-6
+    .card.card-inverse
+      %img.card-img{:alt => "Food Image", "src" => "#{@food_item.image_url}", :width => "100%"}
+      .card-img-overlay
+        %h1.card-title 
+          = @food_item.name
+
+
+    %table.table.table-striped.table-condensed
+      %tr
+        %td
+          %b Description
+        %td= @food_item.description
+      %tr
+        %td 
+          %b Price
+        %td= @food_item.price.round
+      %tr
+        %td 
+          %b Section
+        %td= @food_item.section
+      %tr
+        %td 
+          %b Views
+        %td= @food_item.impressionist_count
+
+  .col-xs-6
+    %h3
+      Reviews
+      .pull-right
+        = button_to "Add a Review", new_food_item_review_path(@food_item), :method => :get, class: 'btn btn-success'
+
+    Average Rating
+    .average-review-rating{"data-score" => @average_review}
+      = @average_review
+
+    %br
+    = render @food_item.reviews
+
+= link_to 'Order', new_food_item_order_path(@food_item), class: "btn btn-success"
+\|
+= link_to 'Edit', edit_food_item_path(@food_item), class: "btn btn-primary"
+\|
+= link_to 'Delete', food_item_path, class: "btn btn-danger", :method => :delete, :data => { :confirm => 'Are you sure?' } 
+\|
+= link_to 'Back', food_items_path, class: "btn btn-secondary"
+
+
+:javascript
+  $('.review-rating').raty({
+  readOnly: true,
+  score: function() {
+  return $(this).attr('data-score');
+  },
+  path: '/assets/'
+  // somehow this needs to be placed in here and the review partial?!?
+  });
+
+:javascript
+  $('.average-review-rating').raty({
+  readOnly: true,
+  score: function() {
+  return $(this).attr('data-score');
+  },
+  path: '/assets/'
+  });

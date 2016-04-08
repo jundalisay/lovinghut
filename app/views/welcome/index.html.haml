@@ -1,0 +1,36 @@
+!!!
+%html{lang: "en"}
+
+.jumbotron.jumbotron-fluid
+  .container
+    %h1.display-3 Loving Hut
+    %p.lead Vegetarian Restaurant
+
+  .btn-group{"aria-label" => "Navigation", :role => "group"}
+    = link_to "Menu", menu_index_path, class: 'btn btn-secondary'
+    = link_to "Contact Us", contact_us_path, class: 'btn btn-secondary'
+
+  .row
+    %form.col-center
+      = form_tag :controller => 'menu', :action => 'index', :method => 'get' do #food_items_path
+        %p
+        / %input.form-control{:placeholder => "Search", :type => "text"}
+        = text_field_tag :search, params[:search], :placeholder => "Type Dish Here"
+        %br
+        %button.btn.btn-warning{:type => "submit"} Search
+
+
+  = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+  
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  
+  = csrf_meta_tags
+
+:css
+  body {
+   background: url('https://upload.wikimedia.org/wikipedia/commons/1/1d/Restaurant_in_The_Mus%C3%A9e_d%27Orsay.jpg') no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+  }
